@@ -6,7 +6,8 @@ if [ $# -eq 0 ] ; then
 fi
 
 args=("$@")
-COMMIT_MESSAGE = ${args[0]}
+COMMIT_MESSAGE=${args[0]}
+echo $COMMIT_MESSAGE
 
 # Build
 bundle exec jekyll build
@@ -17,9 +18,8 @@ rsync -u -a _site/ ../levymoreira.github.io/
 # Push to github
 cd ../levymoreira.github.io/
 git add *
-git commit -m $COMMIT_MESSAGE
+git commit -m "'$COMMIT_MESSAGE'"
 git push --porcelain --progress --recurse-submodules=check origin refs/heads/master:refs/heads/master
-
 
 # Purge cache
 curl https://www.cloudflare.com/api_json.html \
