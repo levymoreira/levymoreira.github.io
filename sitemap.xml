@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://levymoreira.com/articles/java-development-with-docker/</loc>
+<lastmod>2016-09-22T00:00:00-03:00</lastmod>
+</url>
+<url>
+<loc>https://levymoreira.com/articles/httpd-apache-ssl-free-valid-certificate/</loc>
+<lastmod>2016-09-22T00:00:00-03:00</lastmod>
+</url>
+<url>
 <loc>https://levymoreira.com/articles/code-highlighting-post/</loc>
 <lastmod>2013-08-16T00:00:00-03:00</lastmod>
 </url>
@@ -22,5 +30,8 @@
 </url>
 <url>
 <loc>https://levymoreira.com/</loc>
+</url>
+<url>
+<loc>https://levymoreira.com/page2/</loc>
 </url>
 </urlset>
