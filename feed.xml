@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://levymoreira.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://levymoreira.com/" rel="alternate" type="text/html" /><updated>2016-10-01T21:11:35-03:00</updated><id>https://levymoreira.com/</id><title>TL;DR</title><subtitle>Geek, sofware developer and in my spare time game player.</subtitle><author><name>Levy Moreira</name><email>levymoreira.ce@gmail.com</email></author><entry><title>Amazon EC2 create new user with Linux Permissions by Group</title><link href="https://levymoreira.com/articles/amazon-ec2-create-user-linux-permissions-by-group/" rel="alternate" type="text/html" title="Amazon EC2 create new user with Linux Permissions by Group" /><published>2016-10-01T00:00:00-03:00</published><updated>2016-10-01T00:00:00-03:00</updated><id>https://levymoreira.com/articles/amazon-ec2-create-user-linux-permissions-by-group</id><content type="html" xml:base="https://levymoreira.com/articles/amazon-ec2-create-user-linux-permissions-by-group/">&lt;p&gt;This little step by step will guide your through the creation of one new user in one Amazon EC2 Instance.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="https://levymoreira.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://levymoreira.com/" rel="alternate" type="text/html" /><updated>2016-10-01T21:15:24-03:00</updated><id>https://levymoreira.com/</id><title>TL;DR</title><subtitle>Geek, sofware developer and in my spare time game player.</subtitle><author><name>Levy Moreira</name><email>levymoreira.ce@gmail.com</email></author><entry><title>Amazon EC2 create new user with Linux Permissions by Group</title><link href="https://levymoreira.com/articles/amazon-ec2-create-user-linux-permissions-by-group/" rel="alternate" type="text/html" title="Amazon EC2 create new user with Linux Permissions by Group" /><published>2016-10-01T00:00:00-03:00</published><updated>2016-10-01T00:00:00-03:00</updated><id>https://levymoreira.com/articles/amazon-ec2-create-user-linux-permissions-by-group</id><content type="html" xml:base="https://levymoreira.com/articles/amazon-ec2-create-user-linux-permissions-by-group/">&lt;p&gt;This little step by step will guide your through the creation of one new user in one Amazon EC2 Instance.
 At the end, we will have a group that can be added to any folder to give permission of access to our new user.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -62,13 +62,18 @@ sudo usermod -a -G dev ec2-user &lt;span class=&quot;c&quot;&gt;#CentOS&lt;/span
 &lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Just to explain in this string “drwxr-xr-x 2 root root”
-drwxr: Owner of the folder permission, in our case root permissions
-xs: Group folder permissions
-x: All others users permissions (not root and not in the group)
-First root: Folder owner
-Second root: Group of the folder&lt;/li&gt;
+  &lt;li&gt;Just to explain in this string “drwxr-xr-x 2 root root”&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;drwxr: Owner of the folder permission, in our case root permissions&lt;/p&gt;
+
+&lt;p&gt;xs: Group folder permissions&lt;/p&gt;
+
+&lt;p&gt;x: All others users permissions (not root and not in the group)&lt;/p&gt;
+
+&lt;p&gt;First root: Folder owner&lt;/p&gt;
+
+&lt;p&gt;Second root: Group of the folder&lt;/p&gt;
 
 &lt;p&gt;To one better explanation, please check &lt;a href=&quot;https://www.garron.me/en/go2linux/ls-file-permissions.html&quot;&gt;this link&lt;/a&gt;&lt;/p&gt;
 
