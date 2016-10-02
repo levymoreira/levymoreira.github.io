@@ -1,0 +1,627 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Amazon EC2 create new user with Linux Permissions by Group - TL;DR</title>
+
+
+
+
+
+
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="TL;DR">
+<meta property="og:title" content="Amazon EC2 create new user with Linux Permissions by Group">
+
+
+  <link rel="canonical" href="https://levymoreira.com/articles/amazon-ec2-create-user-linux-permissions-by-group/">
+  <meta property="og:url" content="https://levymoreira.com/articles/amazon-ec2-create-user-linux-permissions-by-group/">
+
+
+
+  <meta property="og:description" content="Guide how to use Docker in day to day as a Java Developer.">
+
+
+
+  <meta name="twitter:site" content="@levymoreira">
+  <meta name="twitter:title" content="Amazon EC2 create new user with Linux Permissions by Group">
+  <meta name="twitter:description" content="Guide how to use Docker in day to day as a Java Developer.">
+  <meta name="twitter:url" content="https://levymoreira.com/articles/amazon-ec2-create-user-linux-permissions-by-group/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2016-10-01T00:00:00-03:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Levy Moreira",
+      "url" : "https://levymoreira.com",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://levymoreira.com/feed.xml" type="application/atom+xml" rel="alternate" title="TL;DR Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://levymoreira.com/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="https://levymoreira.com/">TL;DR</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://levymoreira.com/">All Posts</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://levymoreira.com/about">About</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="https://levymoreira.com/images/bio-photo.jpg" class="author__avatar" alt="Levy Moreira">
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Levy Moreira</h3>
+    <p class="author__bio">Geek, sofware developer and in my spare time game player.</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> Fortaleza, Brazil</li>
+      
+      
+      
+        <li><a href="mailto:levymoreira.ce@gmail.com"><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+      
+      
+      
+        <li><a href="https://twitter.com/levymoreira"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+      
+      
+      
+      
+        <li><a href="https://www.linkedin.com/in/levymoreira"><i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn</a></li>
+      
+      
+      
+      
+      
+      
+        <li><a href="https://github.com/levymoreira"><i class="fa fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Amazon EC2 create new user with Linux Permissions by Group">
+    <meta itemprop="description" content="This little step by step will guide your through the creation of one new user in one Amazon EC2 Instance.At the end, we will have a group that can be added to any folder to give permission of access to our new user.">
+    <meta itemprop="datePublished" content="October 01, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Amazon EC2 create new user with Linux Permissions by Group
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>This little step by step will guide your through the creation of one new user in one Amazon EC2 Instance.
+At the end, we will have a group that can be added to any folder to give permission of access to our new user.</p>
+
+<ul>
+  <li>Create a new user</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo useradd myNewUser
+</code></pre>
+</div>
+
+<ul>
+  <li>Create a new group</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo addgroup dev <span class="c">#Debian</span>
+sudo groupadd dev <span class="c">#CentOS</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Add new user in the new group</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo usermod -a -G dev myNewUser
+</code></pre>
+</div>
+
+<ul>
+  <li>List the groups of the user, just to verify</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>groups myNewUser
+<span class="gp">&gt; </span>myNewUser : myNewUser dev
+</code></pre>
+</div>
+
+<ul>
+  <li>If you want that the default user has permission to this group too, do</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo usermod -a -G dev ubuntu <span class="c">#Debian</span>
+sudo usermod -a -G dev ec2-user <span class="c">#CentOS</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Create my test folder with root permission</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo mkdir /var/testFolder
+</code></pre>
+</div>
+
+<ul>
+  <li>List permissions of test folder</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> /var/www/ <span class="o">&amp;&amp;</span> ls -lha
+<span class="gp">&gt; </span>drwxr-xr-x  2 root     root     4,0K Set 30 12:11 testFolder
+</code></pre>
+</div>
+
+<ul>
+  <li>Just to explain in this string “drwxr-xr-x 2 root root”
+drwxr: Owner of the folder permission, in our case root permissions
+xs: Group folder permissions
+x: All others users permissions (not root and not in the group)
+First root: Folder owner
+Second root: Group of the folder</li>
+</ul>
+
+<p>To one better explanation, please check <a href="https://www.garron.me/en/go2linux/ls-file-permissions.html">this link</a></p>
+
+<ul>
+  <li>Change the group of the folder to dev</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo chown -R root:dev /var/testFolder
+</code></pre>
+</div>
+
+<ul>
+  <li>List permissions of my test folder</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>ls -lha
+<span class="gp">&gt; </span>drwxr-xr-x  2 root     dev      4,0K Set 30 12:11 testFolder
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <p>\o/ now the group of the folder is dev</p>
+  </li>
+  <li>
+    <p>Add permissions to dev group in this folder</p>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo chmod <span class="nv">g</span><span class="o">=</span>rwx -R /var/testFolder
+</code></pre>
+</div>
+
+<ul>
+  <li>List permissions to the folder</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>ls -lha
+<span class="gp">&gt; </span>drwxrwxr-x  2 root     dev      4,0K Set 30 12:11 testFolder
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <p>Now we have one new user and one folder to test, but to access the Amazon Instance through ssh we need create a new private key to this user and configure the public key in the server.</p>
+  </li>
+  <li>
+    <p>Generate amazon private key and download to your machine (not to the server)
+<a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair">Amazon User Guide create your key pair</a></p>
+  </li>
+  <li>
+    <p>Change permission of the private key</p>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>chmod 600 privateKeyFileFromAmazon.pem
+</code></pre>
+</div>
+
+<ul>
+  <li>Export the public key to one file, this public key is what we will use in our Amazon Server</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>ssh-keygen -y -f myNewUser.pem &gt; publicmyNewUser.txt
+</code></pre>
+</div>
+
+<ul>
+  <li>Go to Amazon with the root user (default)</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>ssh -i ~/.ssh/mainUserKey.pem ec2-user@52.18.60.59
+</code></pre>
+</div>
+
+<ul>
+  <li>Login with the new user</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo su - myNewUser
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <p>Now you should be redirected to the home folder of the your user, like ‘/home/myNewUser/’</p>
+  </li>
+  <li>
+    <p>Create ssh folder and change permissions</p>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir .ssh <span class="o">&amp;&amp;</span> chmod 700 .ssh
+</code></pre>
+</div>
+
+<ul>
+  <li>Create authorized_keys and change the permission</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>touch .ssh/authorized_keys <span class="o">&amp;&amp;</span> chmod 600 .ssh/authorized_keys
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <p>Now just copy the public key from publicmyNewUser.txt to the authorized_keys file, the instance will use this public key to check if our private key is valid when we try connect</p>
+  </li>
+  <li>
+    <p>Get out from the server and try connect with the new user</p>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>ssh -i ~/.ssh/myNewUser.pem myNewUser@52.18.60.59
+</code></pre>
+</div>
+
+<ul>
+  <li>Try access one folder that you do not have permission, like root user folder</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> /home/ec2-user <span class="c">#centos </span>
+<span class="nb">cd</span> /home/ubuntu <span class="c">#ubuntu</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>You should receive something like</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt; </span>-bash: <span class="nb">cd</span>: /home/ec2-user: Permission denied
+</code></pre>
+</div>
+
+<ul>
+  <li>And try access our test folder that have the group dev</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> /var/testFolder
+touch test.txt
+</code></pre>
+</div>
+
+<h3 id="troubleshooting">Troubleshooting</h3>
+
+<h4 id="error-ssh-access-denied-when-try-access-the-server-with-the-new-user">Error ssh access denied when try access the server with the new user</h4>
+<ul>
+  <li>Check if the files and folder of the server in .ssh have the correct permissions like described</li>
+  <li>Check if the content of authorized_keys is equals to the result of the command ssh-keygen -y -f myNewUser.pem</li>
+  <li>Check if myNewUser.pem have the permission 600</li>
+</ul>
+
+<h4 id="permission-denied-when-try-create-one-file-with-the-default-user-like-ec2-user-or-ubuntu">Permission denied when try create one file with the default user (like ec2-user or ubuntu)</h4>
+<ul>
+  <li>Check if you add this user to the group (check the begin of the tutorial to this)</li>
+  <li>Try just exit of the server and login again (when you change one group of one user is necessary login again, yeh like Windows)</li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://levymoreira.com/tags/#amazon" class="page__taxonomy-item" rel="tag">amazon</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://levymoreira.com/tags/#ec2" class="page__taxonomy-item" rel="tag">ec2</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://levymoreira.com/tags/#ftp" class="page__taxonomy-item" rel="tag">ftp</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://levymoreira.com/tags/#group" class="page__taxonomy-item" rel="tag">group</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://levymoreira.com/tags/#linux" class="page__taxonomy-item" rel="tag">linux</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://levymoreira.com/tags/#new" class="page__taxonomy-item" rel="tag">new</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://levymoreira.com/tags/#permissions" class="page__taxonomy-item" rel="tag">permissions</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://levymoreira.com/tags/#ssh" class="page__taxonomy-item" rel="tag">ssh</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://levymoreira.com/tags/#user" class="page__taxonomy-item" rel="tag">user</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://levymoreira.com/categories/#articles" class="page__taxonomy-item" rel="tag">articles</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-10-01T00:00:00-03:00">October 01, 2016</time></p>
+        
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=levymoreira&text=Amazon EC2 create new user with Linux Permissions by Group https://levymoreira.com/articles/amazon-ec2-create-user-linux-permissions-by-group/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://levymoreira.com/articles/amazon-ec2-create-user-linux-permissions-by-group/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https://levymoreira.com/articles/amazon-ec2-create-user-linux-permissions-by-group/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://levymoreira.com/articles/amazon-ec2-create-user-linux-permissions-by-group/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="https://levymoreira.com/articles/java-development-with-docker/" class="pagination--pager" title="Java Development with Docker
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/levymoreira"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="http://github.com/levymoreira"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="https://levymoreira.com/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2016 Levy Moreira. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    <script src="https://levymoreira.com/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
