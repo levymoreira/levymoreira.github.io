@@ -3,9 +3,21 @@
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
-    
+
 
 <meta charset="utf-8">
+
+    <!-- Hotjar Tracking Code for levymoreira.com -->
+    <script>
+      (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:374684,hjsv:5};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
 
 
 
@@ -46,18 +58,18 @@
   <meta name="twitter:description" content="Demo post displaying the various ways of highlighting code in Markdown.">
   <meta name="twitter:url" content="https://levymoreira.com/articles/httpd-apache-ssl-free-valid-certificate/">
 
-  
+
     <meta name="twitter:card" content="summary">
-    
-  
-
-  
 
 
 
-  
 
-  
+
+
+
+
+
+
 
 
 
@@ -118,7 +130,7 @@
     <!--[if lt IE 9]>
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
-    
+
 
 <div class="masthead">
   <div class="masthead__inner-wrap">
@@ -127,13 +139,13 @@
         <button><div class="navicon"></div></button>
         <ul class="visible-links">
           <li class="masthead__menu-item masthead__menu-item--lg"><a href="https://levymoreira.com/">TL;DR</a></li>
-          
-            
+
+
             <li class="masthead__menu-item"><a href="https://levymoreira.com/">All Posts</a></li>
-          
-            
+
+
             <li class="masthead__menu-item"><a href="https://levymoreira.com/about">About</a></li>
-          
+
         </ul>
         <ul class="hidden-links hidden"></ul>
       </nav>
@@ -141,27 +153,27 @@
   </div>
 </div>
 
-    
+
 
 
 
 
 
 <div id="main" role="main">
-  
+
 
 
   <div class="sidebar sticky">
-  
+
 
 
 
 <div itemscope itemtype="http://schema.org/Person">
 
   <div class="author__avatar">
-    
+
     	<img src="https://levymoreira.com/images/bio-photo.jpg" class="author__avatar" alt="Levy Moreira">
-    
+
   </div>
 
   <div class="author__content">
@@ -172,46 +184,46 @@
   <div class="author__urls-wrapper">
     <button class="btn btn--inverse">Follow</button>
     <ul class="author__urls social-icons">
-      
+
         <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> Fortaleza, Brazil</li>
-      
-      
-      
+
+
+
         <li><a href="mailto:levymoreira.ce@gmail.com"><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
-      
-      
-      
+
+
+
         <li><a href="https://twitter.com/levymoreira"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
-      
-      
-      
-      
+
+
+
+
         <li><a href="https://www.linkedin.com/in/levymoreira"><i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn</a></li>
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+
         <li><a href="https://github.com/levymoreira"><i class="fa fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+
+
+
+
+
+
+
+
     </ul>
   </div>
 </div>
 
-  
+
   </div>
 
 
@@ -219,23 +231,23 @@
     <meta itemprop="headline" content="HTTPD Apache SSL configuration with a FREE valid certificate">
     <meta itemprop="description" content="HTTPD Apache SSL configuration with a FREE valid certificate">
     <meta itemprop="datePublished" content="September 22, 2016">
-    
+
 
     <div class="page__inner-wrap">
-      
+
         <header>
           <h1 class="page__title" itemprop="headline">HTTPD Apache SSL configuration with a FREE valid certificate
 </h1>
-          
+
         </header>
-      
+
 
       <section class="page__content" itemprop="text">
         <p>HTTPD Apache SSL configuration with a FREE valid certificate</p>
 
 <p>This simple guide will show how to configure https in the Amazon EC2 instance with the operating system
 Amazon Linux AMI or Cent OS.
-At the end of this configuration any request to 
+At the end of this configuration any request to
 yoursite.com or www.yoursite.com will be redirected to https://www.yoursite.com
 And the site will have a valid certificate, if your try use a self signed certificate you should receive one error like this: http://www.fixedbyvonnie.com/wp-content/uploads/2015/06/fixedbyvonnie-invalid-certificate.jpg
 So we will generate a valid certificate with <a href="https://certbot.eff.org/">certbot</a>.</p>
@@ -319,85 +331,85 @@ SSLCertificateChainFile /etc/letsencrypt/live/luxysale.com/fullchain.pem</p>
 <h1 id="try-install-sslmod-and-httpd-at-the-same-time-when-i-tried-to-install-sslmod-with-an-already-installed-version-of-httpd-occurred-compatibility-errors-and-ended-up-having-to-remove-it-and-install-again">Try install ssl_mod and httpd at the same time, when I tried to install ssl_mod with an already installed version of httpd occurred compatibility errors and ended up having to remove it and install again.</h1>
 <p>To remove everything and start again run the commands:</p>
 
-<p>yum remove php* 
+<p>yum remove php*
 yum remove httpd*</p>
 
 
-        
+
       </section>
 
       <footer class="page__meta">
-        
-        
-
-
-  
 
 
 
 
-  
-  
-  
+
+
+
+
+
+
+
+
 
   <p class="page__taxonomy">
     <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
-    
-      
-      
+
+
+
       <a href="https://levymoreira.com/tags/#certificate" class="page__taxonomy-item" rel="tag">certificate</a><span class="sep">, </span>
-    
-      
-      
+
+
+
       <a href="https://levymoreira.com/tags/#httpd" class="page__taxonomy-item" rel="tag">httpd</a><span class="sep">, </span>
-    
-      
-      
+
+
+
       <a href="https://levymoreira.com/tags/#https" class="page__taxonomy-item" rel="tag">https</a><span class="sep">, </span>
-    
-      
-      
+
+
+
       <a href="https://levymoreira.com/tags/#ssl" class="page__taxonomy-item" rel="tag">ssl</a>
-    
+
     </span>
   </p>
 
 
 
 
-  
 
 
 
 
-  
-  
-  
+
+
+
+
 
   <p class="page__taxonomy">
     <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
     <span itemprop="keywords">
-    
-      
-      
+
+
+
       <a href="https://levymoreira.com/categories/#articles" class="page__taxonomy-item" rel="tag">articles</a>
-    
+
     </span>
   </p>
 
 
-        
+
           <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-09-22T00:00:00-03:00">September 22, 2016</time></p>
-        
+
       </footer>
 
-      
+
 
 <section class="page__share">
-  
+
     <h4 class="page__share-title">Share on</h4>
-  
+
 
   <a href="https://twitter.com/intent/tweet?via=levymoreira&text=HTTPD Apache SSL configuration with a FREE valid certificate https://levymoreira.com/articles/httpd-apache-ssl-free-valid-certificate/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
@@ -409,27 +421,27 @@ yum remove httpd*</p>
 </section>
 
 
-      
+
 
 
   <nav class="pagination">
-    
+
       <a href="https://levymoreira.com/articles/code-highlighting-post/" class="pagination--pager" title="Syntax Highlighting Post
 ">Previous</a>
-    
-    
+
+
       <a href="https://levymoreira.com/articles/java-development-with-docker/" class="pagination--pager" title="Java Development with Docker
 ">Next</a>
-    
+
   </nav>
 
     </div>
 
-    
+
   </article>
 
-  
-  
+
+
 </div>
 
     <div class="page__footer">
@@ -437,21 +449,21 @@ yum remove httpd*</p>
         <!-- start custom footer snippets -->
 
 <!-- end custom footer snippets -->
-        
+
 
 <div class="page__footer-follow">
   <ul class="social-icons">
-    
+
       <li><strong>Follow:</strong></li>
-    
-    
+
+
       <li><a href="https://twitter.com/levymoreira"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
-    
-    
-    
+
+
+
       <li><a href="http://github.com/levymoreira"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-    
-    
+
+
     <li><a href="https://levymoreira.com/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
