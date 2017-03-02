@@ -27,10 +27,10 @@ git add *
 git commit -m "'$COMMIT_MESSAGE'"
 git push --porcelain --progress --recurse-submodules=check origin refs/heads/master:refs/heads/master
 
-# Purge cache
+# Purge cache DONT COMMIT
 curl https://www.cloudflare.com/api_json.html \
   -d 'a=fpurge_ts' \
-  -d 'tkn=X' \
+  -d 'tkn=58b0f3d2eae7105b7d937ed759327a3587598' \
   -d 'email=levymoreira.ce@gmail.com' \
   -d 'z=levymoreira.com' \
   -d 'v=1'
