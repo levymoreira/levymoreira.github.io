@@ -1,15 +1,17 @@
-
-
 <!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.2.2 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
 <html lang="en" class="no-js">
   <head>
-    
-
-<meta charset="utf-8">
-
-
+    <meta charset="utf-8">
 
 <!-- begin SEO -->
+
+
 
 
 
@@ -22,8 +24,12 @@
 
 
 
+<meta name="description" content="Geek, Software Engineer and in my spare time game player.">
 
 
+
+
+<meta name="author" content="Levy Moreira">
 
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="TL;DR">
@@ -37,9 +43,9 @@
 
 
 
-  <meta name="twitter:site" content="@levymoreira">
+  <meta name="twitter:site" content="@_levymoreira">
   <meta name="twitter:title" content="TL;DR">
-  <meta name="twitter:description" content="Geek, sofware developer and in my spare time game player.">
+  <meta name="twitter:description" content="Geek, Software Engineer and in my spare time game player.">
   <meta name="twitter:url" content="https://levymoreira.com/">
 
   
@@ -47,6 +53,8 @@
     
   
 
+  
+    <meta name="twitter:creator" content="@Levy Moreira">
   
 
 
@@ -81,18 +89,6 @@
 
 
 
-<!-- Hotjar Tracking Code for levymoreira.com -->
-<script>
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:374684,hjsv:5};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
-</script>
-
 
 
 <!-- end SEO -->
@@ -112,6 +108,21 @@
 <!-- For all browsers -->
 <link rel="stylesheet" href="https://levymoreira.com/assets/css/main.css">
 
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
 <meta http-equiv="cleartype" content="on">
     <!-- start custom head snippets -->
 
@@ -120,20 +131,17 @@
 <!-- end custom head snippets -->
   </head>
 
-  <body class="layout--archive">
+  <body class="layout--home">
 
     <!--[if lt IE 9]>
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
-    
-
-<div class="masthead">
+    <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <button><div class="navicon"></div></button>
+        <a class="site-title" href="https://levymoreira.com/">TL;DR</a>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg"><a href="https://levymoreira.com/">TL;DR</a></li>
           
             
             <li class="masthead__menu-item"><a href="https://levymoreira.com/">All Posts</a></li>
@@ -142,6 +150,7 @@
             <li class="masthead__menu-item"><a href="https://levymoreira.com/about">About</a></li>
           
         </ul>
+        <button><div class="navicon"></div></button>
         <ul class="hidden-links hidden"></ul>
       </nav>
     </div>
@@ -154,64 +163,117 @@
 
 <div id="main" role="main">
   
-
-
   <div class="sidebar sticky">
   
 
-
-
 <div itemscope itemtype="http://schema.org/Person">
 
-  <div class="author__avatar">
-    
-    	<img src="https://levymoreira.com/images/bio-photo.jpg" class="author__avatar" alt="Levy Moreira">
-    
-  </div>
+  
+    <div class="author__avatar">
+      
+        <img src="https://levymoreira.com/assets/images/bio-photo.jpg" class="author__avatar" alt="Levy Moreira" itemprop="image">
+      
+    </div>
+  
 
   <div class="author__content">
-    <h3 class="author__name">Levy Moreira</h3>
-    <p class="author__bio">Geek, sofware developer and in my spare time game player.</p>
+    <h3 class="author__name" itemprop="name">Levy Moreira</h3>
+    
+      <p class="author__bio" itemprop="description">
+        Geek, Software Engineer and in my spare time game player.
+      </p>
+    
   </div>
 
   <div class="author__urls-wrapper">
     <button class="btn btn--inverse">Follow</button>
     <ul class="author__urls social-icons">
       
-        <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> Fortaleza, Brazil</li>
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Dublin, Ireland</span>
+        </li>
       
+
       
+
       
-        <li><a href="mailto:levymoreira.ce@gmail.com"><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        <li>
+          <a href="mailto:me@levymoreira.com">
+            <meta itemprop="email" content="me@levymoreira.com" />
+            <i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
       
+
       
+
       
-        <li><a href="https://twitter.com/levymoreira"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        <li>
+          <a href="https://twitter.com/_levymoreira" itemprop="sameAs">
+            <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
       
+
       
+
       
+
       
-        <li><a href="https://www.linkedin.com/in/levymoreira"><i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn</a></li>
+        <li>
+          <a href="https://www.linkedin.com/in/levymoreira" itemprop="sameAs">
+            <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
       
+
       
+
       
+
       
+
       
+
       
-        <li><a href="https://github.com/levymoreira"><i class="fa fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        <li>
+          <a href="https://github.com/levymoreira" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
       
+
       
+
       
+
       
+
       
+
       
+
       
+
       
+
       
+
       
+
       
+
       
+
       
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
     </ul>
   </div>
 </div>
@@ -224,35 +286,10 @@
     
       <h1 class="page__title"></h1>
     
-    
-
-<h3 class="archive__subtitle">Recent Posts</h3>
+    <h3 class="archive__subtitle">Recent Posts</h3>
 
 
   
-
-
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="https://levymoreira.com/articles/amazon-ec2-create-user-linux-permissions-by-group/" rel="permalink">Amazon EC2 create new user with Linux Permissions by Group
-</a>
-      
-    </h2>
-    
-    <p class="archive__item-excerpt" itemprop="description">This little step by step will guide your through the creation of one new user in one Amazon EC2 Instance.
-At the end, we will have a group that can be added ...</p>
-  </article>
-</div>
-
-  
-
-
 
 
 
@@ -272,8 +309,6 @@ At the end, we will have a group that can be added ...</p>
 </div>
 
   
-
-
 
 
 
@@ -297,8 +332,6 @@ At the end, we will have a group that can be added ...</p>
 
 
 
-
-
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     
@@ -317,8 +350,6 @@ At the end, we will have a group that can be added ...</p>
 
 
 
-
-
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     
@@ -333,15 +364,32 @@ At the end, we will have a group that can be added ...</p>
   </article>
 </div>
 
+  
 
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="https://levymoreira.com/articles/sample-post-images/" rel="permalink">A Post with Images
+</a>
+      
+    </h2>
+    
+    <p class="archive__item-excerpt" itemprop="description">Here are some examples of what a post with images might look like. If you want to display two or three images next to each other responsively use figure with...</p>
+  </article>
+</div>
 
 
 
 <nav class="pagination">
+  
   <ul>
     
     
-      <li><a href="#" class="disabled"><span aria-hidden="true">Previous</span></a></li>
+    <li><a href="#" class="disabled"><span aria-hidden="true">Previous</span></a></li>
     
 
     
@@ -367,10 +415,11 @@ At the end, we will have a group that can be added ...</p>
 
     
     
-      <li><a href="https://levymoreira.com/page2/">Next</a></li>
+      <li><a href="https://levymoreira.com/page2/">Next</a></li></a></li>
     
   </ul>
 </nav>
+
 
 
   </div>
@@ -381,15 +430,13 @@ At the end, we will have a group that can be added ...</p>
         <!-- start custom footer snippets -->
 
 <!-- end custom footer snippets -->
-        
-
-<div class="page__footer-follow">
+        <div class="page__footer-follow">
   <ul class="social-icons">
     
       <li><strong>Follow:</strong></li>
     
     
-      <li><a href="https://twitter.com/levymoreira"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+      <li><a href="https://twitter.com/_levymoreira"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
     
     
     
@@ -400,7 +447,7 @@ At the end, we will have a group that can be added ...</p>
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2016 Levy Moreira. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2017 Levy Moreira. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
       </footer>
     </div>
 

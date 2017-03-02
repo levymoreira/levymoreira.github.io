@@ -1,13 +1,13 @@
-
-
 <!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.2.2 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
 <html lang="en" class="no-js">
   <head>
-
-
-<meta charset="utf-8">
-
-
+    <meta charset="utf-8">
 
 <!-- begin SEO -->
 
@@ -24,20 +24,12 @@
 
 
 
-
-    <!-- Hotjar Tracking Code for levymoreira.com -->
-    <script>
-      (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:374684,hjsv:5};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-      })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
+<meta name="description" content="Geek, Software Engineer and in my spare time game player.">
 
 
+
+
+<meta name="author" content="Levy Moreira">
 
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="TL;DR">
@@ -51,27 +43,29 @@
 
 
 
-  <meta name="twitter:site" content="@levymoreira">
+  <meta name="twitter:site" content="@_levymoreira">
   <meta name="twitter:title" content="About me">
-  <meta name="twitter:description" content="Geek, sofware developer and in my spare time game player.">
+  <meta name="twitter:description" content="Geek, Software Engineer and in my spare time game player.">
   <meta name="twitter:url" content="https://levymoreira.com/about/">
 
-
+  
     <meta name="twitter:card" content="summary">
+    
+  
+
+  
+    <meta name="twitter:creator" content="@Levy Moreira">
+  
 
 
 
+  
+
+  
 
 
 
-
-
-
-
-
-
-
-  <meta property="og:image" content="https://levymoreira.com/images/about.jpg">
+  <meta property="og:image" content="https://levymoreira.com/assets/images/about.jpg">
 
 
 
@@ -114,6 +108,21 @@
 <!-- For all browsers -->
 <link rel="stylesheet" href="https://levymoreira.com/assets/css/main.css">
 
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
 <meta http-equiv="cleartype" content="on">
     <!-- start custom head snippets -->
 
@@ -127,35 +136,29 @@
     <!--[if lt IE 9]>
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
-
-
-<div class="masthead">
+    <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <button><div class="navicon"></div></button>
+        <a class="site-title" href="https://levymoreira.com/">TL;DR</a>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg"><a href="https://levymoreira.com/">TL;DR</a></li>
-
-
+          
+            
             <li class="masthead__menu-item"><a href="https://levymoreira.com/">All Posts</a></li>
-
-
+          
+            
             <li class="masthead__menu-item"><a href="https://levymoreira.com/about">About</a></li>
-
+          
         </ul>
+        <button><div class="navicon"></div></button>
         <ul class="hidden-links hidden"></ul>
       </nav>
     </div>
   </div>
 </div>
 
-
-
-
-
-
-
+    
+  
 
 
 
@@ -164,193 +167,240 @@
 
 
 <div class="page__hero--overlay"
-  style=" background-image: url('https://levymoreira.com/images/about.jpg');"
+  style=" background-image: url('https://levymoreira.com/assets/images/about.jpg');"
 >
-
+  
     <div class="wrapper">
       <h1 class="page__title" itemprop="headline">
-
+        
           About me
 
-
+        
       </h1>
-
-
-
+      
+      
+      
         <p><a href="https://br.linkedin.com/in/levymoreira" class="btn btn--light-outline btn--large">Check my Linkedin</a></p>
-
+      
     </div>
-
-
-    <span class="page__hero-caption">Photo credit: My mom
+  
+  
+    <span class="page__hero-caption">Photo credit: My wife
 </span>
-
+  
 </div>
+
 
 
 
 
 <div id="main" role="main">
-
-
-
+  
   <div class="sidebar sticky">
-
-
-
+  
 
 <div itemscope itemtype="http://schema.org/Person">
 
-  <div class="author__avatar">
-
-    	<img src="https://levymoreira.com/images/bio-photo.jpg" class="author__avatar" alt="Levy Moreira">
-
-  </div>
+  
+    <div class="author__avatar">
+      
+        <img src="https://levymoreira.com/assets/images/bio-photo.jpg" class="author__avatar" alt="Levy Moreira" itemprop="image">
+      
+    </div>
+  
 
   <div class="author__content">
-    <h3 class="author__name">Levy Moreira</h3>
-    <p class="author__bio">Geek, sofware developer and in my spare time game player.</p>
+    <h3 class="author__name" itemprop="name">Levy Moreira</h3>
+    
+      <p class="author__bio" itemprop="description">
+        Geek, Software Engineer and in my spare time game player.
+      </p>
+    
   </div>
 
   <div class="author__urls-wrapper">
     <button class="btn btn--inverse">Follow</button>
     <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Dublin, Ireland</span>
+        </li>
+      
 
-        <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> Fortaleza, Brazil</li>
+      
 
+      
+        <li>
+          <a href="mailto:me@levymoreira.com">
+            <meta itemprop="email" content="me@levymoreira.com" />
+            <i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
 
+      
 
-        <li><a href="mailto:levymoreira.ce@gmail.com"><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+      
+        <li>
+          <a href="https://twitter.com/_levymoreira" itemprop="sameAs">
+            <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
 
+      
 
+      
 
-        <li><a href="https://twitter.com/levymoreira"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+      
+        <li>
+          <a href="https://www.linkedin.com/in/levymoreira" itemprop="sameAs">
+            <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
 
+      
 
+      
 
+      
 
-        <li><a href="https://www.linkedin.com/in/levymoreira"><i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn</a></li>
+      
 
+      
+        <li>
+          <a href="https://github.com/levymoreira" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
 
+      
 
+      
 
+      
 
+      
 
-        <li><a href="https://github.com/levymoreira"><i class="fa fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+      
 
+      
 
+      
 
+      
 
+      
 
+      
 
+      
 
+      
 
-
-
-
-
-
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
     </ul>
   </div>
 </div>
 
-
+  
   </div>
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="About me">
-
-
+    
+    
     <meta itemprop="dateModified" content="September 09, 2013">
 
     <div class="page__inner-wrap">
-
+      
 
       <section class="page__content" itemprop="text">
-        <p>My name is <strong>Levy Moreira</strong>, I am an Geek and Software Developer in <em>Fortaleza Brazil</em>
-and currently I work at the <a href="http://www.atlantico.com.br/en">Instituto Atlântico</a>…
-In my spare time I play games and update this blog with things of my interest.</p>
+        <p>My name is <strong>Levy Moreira</strong>, I am an Geek and Software Developer in <em>Dublin Ireland</em> 
+and currently I work at the <a href="https://www.guidewire.com/">Guidewire</a>… 
+In my spare time I play video games and update this blog with things of my interest.</p>
 
 <hr />
 <p>Thanks for access <a href="http://www.levymoreira.com">my site</a> if you want more information about my professional experience please check <a href="https://br.linkedin.com/in/levymoreira">my Linkedin account</a>.
-Or if want know more about me, please call me to drink some cofe :)</p>
+Or if want know more about me, please call me to drink some coffee :)</p>
 
-
+        
       </section>
 
       <footer class="page__meta">
+        
+        
+  
 
 
-
-
-
-
-
-
-
-
-
-
+  
+  
+  
 
   <p class="page__taxonomy">
     <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
-
-
-
+    
+      
+      
       <a href="https://levymoreira.com/tags/#about" class="page__taxonomy-item" rel="tag">about</a>
-
+    
     </span>
   </p>
 
 
 
 
-
+        
           <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2013-09-09">September 09, 2013</time></p>
-
+        
       </footer>
 
+      
 
-
-
-
-
+      
     </div>
 
-
+    
   </article>
 
-
-
+  
+  
 </div>
+
 
     <div class="page__footer">
       <footer>
         <!-- start custom footer snippets -->
 
 <!-- end custom footer snippets -->
-
-
-<div class="page__footer-follow">
+        <div class="page__footer-follow">
   <ul class="social-icons">
-
+    
       <li><strong>Follow:</strong></li>
-
-
-      <li><a href="https://twitter.com/levymoreira"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
-
-
-
+    
+    
+      <li><a href="https://twitter.com/_levymoreira"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
       <li><a href="http://github.com/levymoreira"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-
-
+    
+    
     <li><a href="https://levymoreira.com/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2016 Levy Moreira. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2017 Levy Moreira. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
       </footer>
     </div>
 
