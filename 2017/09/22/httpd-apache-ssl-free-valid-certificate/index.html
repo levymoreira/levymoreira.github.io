@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">    
+    <title>HTTPD Apache SSL configuration with a FREE valid certificate</title> 
+    <meta name="description" content="Levy's Blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="canonical" href="https://levymoreira.com/2017/09/22/httpd-apache-ssl-free-valid-certificate/">
+    <link rel="alternate" type="application/rss+xml" title="Levy Moreira Feed" href="https://levymoreira.com/feed.xml">
+</head>
+<body>
+    <nav id="top" class="site-navigation">
+        <div class="inner">
+            <button id="menu-toggle" aria-expanded="false">Menu</button>
+            <div class="nav-menu">
+                <ul class="menu">
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/">Home</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/tags/">Archives</a>
+                  </li>
+                
+                  
+                  
+                  <li class="">
+                    <a class="" href="/about/">About</a>
+                  </li>
+                
+                </ul>        
+            </div><!-- .nav-menu -->
+            <a class="subscribe-button fa-feed square fill-horizontal" href="/feed.xml"><span class="screen-reader-text">Subscribe</span></a>
+        </div><!-- .inner -->
+    </nav><!-- .site-navigation -->
+    <header class="site-header">
+        <div class="inner">
+            <h1 class="site-title"><a class="logo-text" href="/">Levy Moreira</a></h1>
+            <p class="site-description"></p>
+        </div><!-- .inner -->
+    </header>
+    <div class="site-content">
+    <div class="inner">
+        <main class="site-main">
+            <article class="post">
+                <header class="entry-header"> 
+                    <div class="entry-header-wrap">
+                        
+                        <div class="post-thumbnail">
+                            <img src="/images/posts/road.jpg" alt="HTTPD Apache SSL configuration with a FREE valid certificate">
+                        </div><!-- .post-thumbnail -->
+                        
+                        <h1 class="entry-title">HTTPD Apache SSL configuration with a FREE valid certificate</h1>
+                    </div><!-- .entry-header-wrap -->
+                    <div class="entry-meta">
+                        by <span class="post-author">Levy Moreira</span> on <time class="published" datetime="2017-09-22">September 22, 2017</time>
+                    </div><!-- .entry-meta -->
+                </header><!-- .entry-header -->
+                <div class="entry-content">
+                    <p>HTTPD Apache SSL configuration with a FREE valid certificate</p>
+
+<p>This simple guide will show how to configure https in the Amazon EC2 instance with the operating system
+Amazon Linux AMI or Cent OS.
+At the end of this configuration any request to
+yoursite.com or www.yoursite.com will be redirected to https://www.yoursite.com
+And the site will have a valid certificate, if your try use a self signed certificate you should receive one error like this: http://www.fixedbyvonnie.com/wp-content/uploads/2015/06/fixedbyvonnie-invalid-certificate.jpg
+So we will generate a valid certificate with <a href="https://certbot.eff.org/">certbot</a>.</p>
+
+<ul>
+  <li>Install apache, php and ssl
+yum install httpd mod_ssl git</li>
+</ul>
+
+<p>This command will install the <a href="https://httpd.apache.org/">HTTPD Apache</a>, that is a simple server, the <a href="https://httpd.apache.org/docs/current/mod/mod_ssl.html">mod_ssl</a>, that is a module of Apache to cryptography using the Secure Sockets Layer (SSL) and Transport Layer Security (TLS) protocols and the <a href="https://git-scm.com/">git</a> that is one version control system that we will use just to download the project that will generate our certificate.</p>
+
+<ul>
+  <li>Disable welcome page of Apache
+sudo rm -rf /etc/httpd/conf.d/welcome.conf</li>
+</ul>
+
+<p>By default Apache come with a welcome page, to disable this page we just need remove the conf file that do this.
+Now just for test you can create one file called index.html in the /var/www/html/ and run
+sudo service httpd start
+then try access yourdomain.com, should work but without https.</p>
+
+<ul>
+  <li>Generating the certificate</li>
+</ul>
+
+<p>Now we can begin the game, generate the certificate…</p>
+
+<h1>Download the certbot project</h1>
+<p>git clone https://github.com/certbot/certbot.git
+cd certbot</p>
+
+<p>This command will download the last version of the certbot to your machine.</p>
+
+<h1>Run the command that generate the certificate</h1>
+<p>./letsencrypt-auto certonly –debug</p>
+
+<h1>Select the first option:</h1>
+<p>Place files in webroot directory</p>
+
+<h1>Write the domain address, ex.:</h1>
+<p>luxysale.com www.luxysale.com</p>
+
+<h1>Select the root apache folder</h1>
+<p>/var/www/html/</p>
+
+<h1>When the script finish, the certificates will be generated in the folder:</h1>
+<p>/etc/letsencrypt/live/luxysale.com/</p>
+
+<h1>With the content:</h1>
+<p>cert.pem   fullchain.pem chain.pem  privkey.pem</p>
+
+<ul>
+  <li>Renew the certificate
+    <h1>To renew the certificate just go to the folder certbot and execute:</h1>
+    <p>./letsencrypt-auto renew</p>
+  </li>
+  <li>Setting the new certificate in apache
+    <h1>Edit the file /etc/httpd/conf.d/ssl.conf, and edit/include the follow properties:</h1>
+    <p>ServerName luxysale.com
+ServerAlias www.luxysale.com
+SSLCertificateFile /etc/letsencrypt/live/luxysale.com/cert.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/luxysale.com/privkey.pem
+SSLCertificateChainFile /etc/letsencrypt/live/luxysale.com/fullchain.pem</p>
+  </li>
+  <li>Enabling redirect from http to https
+    <h1>Edit the file /etc/httpd/conf/httpd.conf, and include the follow lines at the end of file:</h1>
+  </li>
+</ul>
+<p>&lt;VirtualHost *:80&gt;
+  ServerName www.luxysale.com
+  Redirect “/” “https://www.luxysale.com/”
+&lt;/VirtualHost&gt;</p>
+
+<ul>
+  <li>Troubleshooting</li>
+</ul>
+
+<h1>Try install ssl_mod and httpd at the same time, when I tried to install ssl_mod with an already installed version of httpd occurred compatibility errors and ended up having to remove it and install again.</h1>
+<p>To remove everything and start again run the commands:</p>
+
+<p>yum remove php*
+yum remove httpd*</p>
+
+
+                </div><!-- .entry-content -->
+                <footer class="entry-footer">
+                    <div class="share-post">
+                        <span>Share</span>
+                        <a class="fa-twitter" target="_blank" href="https://twitter.com/intent/tweet?text=HTTPD%20Apache%20SSL%20configuration%20with%20a%20FREE%20valid%20certificate&amp;url=https://levymoreira.com/2017/09/22/httpd-apache-ssl-free-valid-certificate/"><span class="screen-reader-text">Twitter</span></a>
+                        <a class="fa-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://levymoreira.com/2017/09/22/httpd-apache-ssl-free-valid-certificate/&amp;t=HTTPD%20Apache%20SSL%20configuration%20with%20a%20FREE%20valid%20certificate"><span class="screen-reader-text">Facebook</span></a>
+                        <a class="fa-google-plus" target="_blank" href="http://plus.google.com/share?url=https://levymoreira.com/2017/09/22/httpd-apache-ssl-free-valid-certificate/"><span class="screen-reader-text">Google+</span></a>
+                    </div><!-- .share-post -->
+                    
+                    <div class="tag-links">
+                        Tags: <a href="/tags/index.html#certbot" title="Pages tagged certbot" rel="tag">certbot</a><a href="/tags/index.html#ssl" title="Pages tagged ssl" rel="tag">ssl</a>
+                    </div>
+                    
+                </footer><!-- .entry-footer -->
+            </article><!-- .post -->
+            <div class="author-box">
+                <div class="author-info">
+                    <div class="author-avatar" style="background-image: url(/images/bio-photo.jpg)"><span class="screen-reader-text">Levy Moreira's Picture</span></div>
+                    <div class="author-details">
+                        <h2 class="author-title">About Levy Moreira</h2>
+                        <p class="author-bio">Geek, Software Engineer and in my spare time game player.</p>
+                        <span class="author-location"><i class="fa-map-marker" aria-hidden="true"></i> Dublin, Ireland</span>
+                        <span class="author-website"><i class="fa-chain" aria-hidden="true"></i> <a href="https://levymoreira.com/about" target="_blank"> https://levymoreira.com/about</a></span>
+                    </div><!-- .author-details -->
+                </div><!-- .author-info -->
+            </div><!-- .author-box -->
+            <nav class="post-navigation">
+                <h2 class="screen-reader-text">Post navigation</h2>
+                
+                <div class="nav-previous">
+                    <div class="nav-inside">
+                        
+                        <a href="/2017/03/23/Graphic-Designer-On-The-Road/" class="nav-thumb" style="background-image: url(/images/posts/road.jpg)"></a>
+                        
+                        <div class="nav-before">Previous</div>
+                        <div class="nav-title"><a href="/2017/03/23/Graphic-Designer-On-The-Road/">Graphic Designer On The Road</a></div>
+                        <div class="nav-date">March 23, 2017</div>
+                    </div><!-- .nav-inside -->
+                </div><!-- .nav-previous -->
+                
+                
+                <div class="nav-next">
+                    <div class="nav-inside">
+                        
+                        <a href="/2017/10/01/amazon-ec2-create-user-linux-permissions-by-group/" class="nav-thumb" style="background-image: url(/images/posts/road.jpg)"></a>
+                        
+                        <div class="nav-before">Next</div>
+                        <div class="nav-title"><a href="/2017/10/01/amazon-ec2-create-user-linux-permissions-by-group/">Amazon EC2 create new user with Linux Permissions by Group</a></div>
+                        <div class="nav-date">October 1, 2017</div>
+                    </div><!-- .nav-inside -->
+                </div><!-- .nav-next -->
+                
+            </nav><!-- .post-navigation -->
+            
+        </main><!-- .site-main -->
+        <aside class="sidebar">
+
+    
+    <section class="widget widget-text">
+        <h2 class="widget-title">About Levy Moreira</h2>
+        <p>Geek, Software Engineer and in my spare time game player.</p>
+    </section><!-- .widget-text -->
+    
+
+    
+
+    
+    <section class="widget widget-text">
+        <p><a href="https://levymoreira.com" target="_blank"><img src="/images/banner.jpg" alt="Optional Banner Ad" /></a></p>
+    </section><!-- .widget-text-->
+    
+
+    <section class="widget widget-recent-posts">
+        <h2 class="widget-title">Latest Posts</h2>
+        <ul class="recent-posts">
+            
+            <li class="recent-item"><a href="/2017/10/01/amazon-ec2-create-user-linux-permissions-by-group/">Amazon EC2 create new user with Linux Permissions by Group</a> <span>October 1, 2017</span></li>
+            
+            <li class="recent-item"><a href="/2017/09/22/httpd-apache-ssl-free-valid-certificate/">HTTPD Apache SSL configuration with a FREE valid certificate</a> <span>September 22, 2017</span></li>
+            
+            <li class="recent-item"><a href="/2017/03/23/Graphic-Designer-On-The-Road/">Graphic Designer On The Road</a> <span>March 23, 2017</span></li>
+            
+            <li class="recent-item"><a href="/2016/03/22/a-week-with-the-apple-watch/">Review: A Week With the Apple Watch</a> <span>March 22, 2016</span></li>
+            
+            <li class="recent-item"><a href="/2016/03/19/basic-rules-for-walking-in-the-mountains/">Basic Rules For Walking In The Mountains</a> <span>March 19, 2016</span></li>
+            
+        </ul><!-- .recent-posts -->
+    </section><!-- .widget-recent-posts -->
+
+    <!--Create a sorted array of tags-->
+    
+    
+    <section class="widget widget-tags">
+        <h2 class="widget-title">Tags</h2>
+        <div class="tagcloud">
+            
+            <a href="/tags/#aws">aws</a>
+            
+            <a href="/tags/#blogging">blogging</a>
+            
+            <a href="/tags/#certbot">certbot</a>
+            
+            <a href="/tags/#ec2">ec2</a>
+            
+            <a href="/tags/#industrial+design">industrial design</a>
+            
+            <a href="/tags/#minimal">minimal</a>
+            
+            <a href="/tags/#permissions">permissions</a>
+            
+            <a href="/tags/#photography">photography</a>
+            
+            <a href="/tags/#ssl">ssl</a>
+            
+            <a href="/tags/#tech">tech</a>
+            
+            <a href="/tags/#tips">tips</a>
+            
+            <a href="/tags/#travel">travel</a>
+            
+            <a href="/tags/#web+design">web design</a>
+            
+            <a href="/tags/#work">work</a>
+            
+        </div><!-- .tagcloud -->
+    </section><!-- .widget -->
+
+</aside><!-- .sidebar -->
+
+    </div><!-- .inner -->
+</div><!-- .site-content -->
+
+    <footer class="site-footer">
+    <div class="inner">
+        <div class="social-links">
+            
+            <a href="https://twitter.com/_levymoreira" class="fa-twitter square fill-horizontal"><span class="screen-reader-text">Twitter</span></a>
+            
+            
+            <a href="https://www.facebook.com/levymoreira" class="fa-facebook square fill-horizontal"><span class="screen-reader-text">Facebook</span></a>
+            
+            
+            
+            <a href="https://github.com/levymoreira" class="fa-github-alt square fill-horizontal"><span class="screen-reader-text">GitHub</span></a>
+            
+            
+            
+            
+            
+            <a href="http://instagram.com/levymoreira" class="fa-instagram square fill-horizontal"><span class="screen-reader-text">Instagram</span></a>
+            
+            
+            
+            <a href="https://www.linkedin.com/in/levymoreira" class="fa-linkedin square fill-horizontal"><span class="screen-reader-text">LinkedIn</span></a>
+            
+            
+            <a class="fa-feed square fill-horizontal" href="/feed.xml"><span class="screen-reader-text">RSS</span></a>
+        </div><!-- .social-links -->
+        <div class="site-info">
+            &copy; <a href="/">Levy Moreira</a> all rights reserved. <br />Powered by <a target="_blank" href="https://jekyllrb.com/">Jekyll</a>. BlogInn theme by <a target="_blank" href="http://justgoodthemes.com/">JustGoodThemes</a>
+            <a href="#top" id="top-link" class="fa-chevron-up top-link square fill-horizontal"><span class="screen-reader-text">Back to the top</span></a>
+        </div><!-- .site-info -->
+    </div><!-- .inner -->
+</footer><!-- .site-footer -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/plugins.js"></script>
+    <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>
