@@ -11,13 +11,12 @@ if [ $# -eq 0 ] ; then
     exit 1
 fi
 
-cd ..
-
 # Variables
 args=("$@")
 COMMIT_MESSAGE=${args[0]}
 
 # Build
+#rm -rf _site && bundle exec jekyll build
 rm -rf _site && jekyll build
 
 # Copy to github.io project
