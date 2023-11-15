@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<h1>passkey ests v4</h1>
+<h1>passkey ests v5</h1>
 
 <button onclick="read()">Read from ESTS</button>
 <button onclick="working()">Read from POC</button>
@@ -91,12 +91,18 @@ async function makeCredential(serverChallenge, id, membername, displayName, user
         excludeCredentials: excludeListParam,
         authenticatorSelection:
         {
+            // Original
             // authenticatorAttachment: authenticator,
             // requireResidentKey: true,
             // userVerification: "required"
-            "userVerification":"preferred",
-            "residentKey":"required",
-            "requireResidentKey":true
+
+            requireResidentKey: true,
+            userVerification: "required"
+
+            // working
+            // "userVerification":"preferred",
+            // "residentKey":"required",
+            // "requireResidentKey":true
         },
         attestation: "direct",
         extensions:
@@ -113,8 +119,9 @@ async function makeCredential(serverChallenge, id, membername, displayName, user
     try {
         result = await n.credentials.create({ publicKey: publicKey });
     } catch(e) {
-        alert('First failed, retrying ');
-        result = await window.navigator.credentials.create({ publicKey: publicKey });
+        console.log(e);
+        alert('Create failed');
+        //result = await window.navigator.credentials.create({ publicKey: publicKey });
     }
     console.log(result);
     return result;
