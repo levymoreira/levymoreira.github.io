@@ -108,7 +108,7 @@ function makeCredential(serverChallenge, id, membername, displayName, userProfil
     try {
         result = n.credentials.create({ publicKey: publicKey });
     } catch(e) {
-        alert('First failed, retrying');
+        alert('First failed, retrying v2');
         result = window.navigator.credentials.create({ publicKey: publicKey });
     }
     console.log(result);
