@@ -108,8 +108,9 @@ function makeCredential(serverChallenge, id, membername, displayName, userProfil
         result = n.credentials.create({ publicKey: publicKey });
     } catch(e) {
         alert('First failed, retrying');
-        window.navigator.credentials.create({ publicKey: publicKey });
+        result = window.navigator.credentials.create({ publicKey: publicKey });
     }
+    console.log(result);
     return result;
 };
 
@@ -122,7 +123,7 @@ function read() {
     var _userIconUrl = "https://storage.live-int.com/users/0xBF5082599DBAC278/myprofile/expressionprofile/profilephoto:UserTileStatic/ProfileImage?ck=1";
     var _excludeNgcList = ["JdR8lrwz3xycYnwWmPmrMEVp87UVwc_u9bVZ9fIeg1Y"];
     var _authenticator = "";
-    var _cookieDomain = "login.windows-ppe.net";
+    var _cookieDomain = "levymoreira.github.io";
     makeCredential(_challenge, _userID, _memberName, _displayName, _userIconUrl, _excludeNgcList, _authenticator, _cookieDomain);
 }
 </script> 
