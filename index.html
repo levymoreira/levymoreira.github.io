@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<h1>passkey ests v2</h1>
+<h1>passkey ests v3</h1>
 
 <button onclick="read()">Read</button>
 
@@ -89,9 +89,7 @@ function makeCredential(serverChallenge, id, membername, displayName, userProfil
         authenticatorSelection:
         {
             authenticatorAttachment: authenticator,
-            requireResidentKey: true,
-            userVerification: "required",
-            residentKey: "required"
+            userVerification: "required"
         },
         attestation: "direct",
         extensions:
@@ -108,7 +106,7 @@ function makeCredential(serverChallenge, id, membername, displayName, userProfil
     try {
         result = n.credentials.create({ publicKey: publicKey });
     } catch(e) {
-        alert('First failed, retrying v2');
+        alert('First failed, retrying ');
         result = window.navigator.credentials.create({ publicKey: publicKey });
     }
     console.log(result);
