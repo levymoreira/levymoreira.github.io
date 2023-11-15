@@ -2,9 +2,11 @@
 <html>
 <body>
 
-<h1>passkey ests v3</h1>
+<h1>passkey ests v4</h1>
 
-<button onclick="read()">Read</button>
+<button onclick="read()">Read from ESTS</button>
+<button onclick="working()">Read from POC</button>
+
 
 <script>
 var w = window;
@@ -49,7 +51,7 @@ function base64UrlStringToArrayBuffer (base64UrlString)
     return stringToArrayBuffer(bytes);
 };
 
-function makeCredential(serverChallenge, id, membername, displayName, userProfileImageUrl, serverExcludeList, authenticator, rpId)
+async function makeCredential(serverChallenge, id, membername, displayName, userProfileImageUrl, serverExcludeList, authenticator, rpId)
 {
     var excludeListParam = [];
 
@@ -89,8 +91,12 @@ function makeCredential(serverChallenge, id, membername, displayName, userProfil
         excludeCredentials: excludeListParam,
         authenticatorSelection:
         {
-            authenticatorAttachment: authenticator,
-            userVerification: "required"
+            // authenticatorAttachment: authenticator,
+            // requireResidentKey: true,
+            // userVerification: "required"
+            "userVerification":"preferred",
+            "residentKey":"required",
+            "requireResidentKey":true
         },
         attestation: "direct",
         extensions:
@@ -105,14 +111,70 @@ function makeCredential(serverChallenge, id, membername, displayName, userProfil
 
     var result;
     try {
-        result = n.credentials.create({ publicKey: publicKey });
+        result = await n.credentials.create({ publicKey: publicKey });
     } catch(e) {
         alert('First failed, retrying ');
-        result = window.navigator.credentials.create({ publicKey: publicKey });
+        result = await window.navigator.credentials.create({ publicKey: publicKey });
     }
     console.log(result);
     return result;
 };
+
+// working
+function working() {
+    const options = {
+        "challenge":"Wsp1nem74zlQW-6f_BV1W_ogINvd4in-dmrHATQbR14",
+        "rp":{"name":"WebAuthn Demo","id":"levymoreira.github.io"},
+        "user":{"id":"2f40e1a9-6aa5-4c92-835f-3c9518cc9b03","name":"yuktipatil@gmail.com","displayName":"Yukti Patil"},
+        "pubKeyCredParams":[{
+            "alg": -8,
+            "type": "public-key"
+        },
+        {
+            "alg": -7,
+            "type": "public-key"
+        },
+        {
+            "alg": -36,
+            "type": "public-key"
+        },
+        {
+            "alg": -37,
+            "type": "public-key"
+        },
+        {
+            "alg": -38,
+            "type": "public-key"
+        },
+        {
+            "alg": -39,
+            "type": "public-key"
+        },
+        {
+            "alg": -257,
+            "type": "public-key"
+        },
+        {
+            "alg": -258,
+            "type": "public-key"
+        },
+        {
+            "alg": -259,
+            "type": "public-key"
+        }],
+        "timeout":60000,
+        "attestation":"direct",
+        "excludeCredentials":[],
+        "authenticatorSelection":{
+            "userVerification":"preferred",
+            "residentKey":"required",
+            "requireResidentKey":true
+        },
+        "extensions": {"credProps":true}
+    };
+    window.navigator.credentials.create({ publicKey: options });
+}
+
 
 function read() {
     alert('Reading passkey');
