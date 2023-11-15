@@ -2,10 +2,10 @@
 <html>
 <body>
 
-<h1>passkey ests v5</h1>
+<h1>passkey ests v6</h1>
 
-<button onclick="read()">Read from ESTS</button>
-<button onclick="working()">Read from POC</button>
+<button onclick="read(true)">Read authenticator empty</button>
+<button onclick="read(false)">Read authenticator undefined</button>
 
 
 <script>
@@ -51,7 +51,7 @@ function base64UrlStringToArrayBuffer (base64UrlString)
     return stringToArrayBuffer(bytes);
 };
 
-async function makeCredential(serverChallenge, id, membername, displayName, userProfileImageUrl, serverExcludeList, authenticator, rpId)
+async function makeCredential(serverChallenge, id, membername, displayName, userProfileImageUrl, serverExcludeList, authenticator, rpId, authEmpty)
 {
     var excludeListParam = [];
 
@@ -97,7 +97,8 @@ async function makeCredential(serverChallenge, id, membername, displayName, user
             // userVerification: "required"
 
             requireResidentKey: true,
-            userVerification: "required"
+            userVerification: "required",
+            authenticatorAttachment: authEmpty ? "" : undefined
 
             // working
             // "userVerification":"preferred",
@@ -183,7 +184,7 @@ function working() {
 }
 
 
-function read() {
+function read(authEmpty) {
     alert('Reading passkey');
     var _challenge = "-AvJPPi6uBToigaeR1rD3UEc4hWwRrMg7KXwUIUrCTjga*1Fb6bjj!rBPRiECZCxdhHm0pH7!YLqr3D*kbVzGz2M8Edd0hLuBsBLm3Wvub7Wf2pvpfU2iMz*BHAMDhJIwfA$$";
     var _userID = "TUY6636IrsRzxbR05_f3C42rHX5tWjx7VUc8afa0i60h1lw";
@@ -193,7 +194,7 @@ function read() {
     var _excludeNgcList = ["JdR8lrwz3xycYnwWmPmrMEVp87UVwc_u9bVZ9fIeg1Y"];
     var _authenticator = "";
     var _cookieDomain = "levymoreira.github.io";
-    makeCredential(_challenge, _userID, _memberName, _displayName, _userIconUrl, _excludeNgcList, _authenticator, _cookieDomain);
+    makeCredential(_challenge, _userID, _memberName, _displayName, _userIconUrl, _excludeNgcList, _authenticator, _cookieDomain, authEmpty);
 }
 </script> 
 
