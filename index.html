@@ -90,7 +90,8 @@ function makeCredential(serverChallenge, id, membername, displayName, userProfil
         {
             authenticatorAttachment: authenticator,
             requireResidentKey: true,
-            userVerification: "required"
+            userVerification: "required",
+            residentKey: "required"
         },
         attestation: "direct",
         extensions:
